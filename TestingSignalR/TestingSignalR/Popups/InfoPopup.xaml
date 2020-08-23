@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+                 xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="TestingSignalR.Popups.InfoPopup">
+
+  
+        <StackLayout
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"
+             BackgroundColor="White"
+            WidthRequest="250"
+            HeightRequest="150"
+            >
+        <StackLayout
+            HeightRequest="50"
+            Orientation="Horizontal"
+            BackgroundColor="{StaticResource MainBackGroundColor}"
+            >
+            <Label Text="{Binding ErrorDescription}" TextColor="White" VerticalOptions="CenterAndExpand" FontAttributes="Bold" Margin="10,0,0,0" />
+            <ffSvg:SvgCachedImage Margin="0,0,10,0" HorizontalOptions="EndAndExpand" Source="close_white.svg" HeightRequest="20" WidthRequest="20">
+                <ffSvg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding ClosePopup}" />
+                </ffSvg:SvgCachedImage.GestureRecognizers>
+            </ffSvg:SvgCachedImage>
+        </StackLayout>
+        <Label Text="{Binding ErrorMessage}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+    </StackLayout>
+    
+    
+</pages:PopupPage>

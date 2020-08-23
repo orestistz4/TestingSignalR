@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="TestingSignalR.Modals.RegisterPageView">
+    <ContentPage.Content>
+
+
+        <Grid
+         
+            >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <StackLayout
+                BackgroundColor="{StaticResource MainBackGroundColor}"
+                Grid.Row="0"
+                HeightRequest="50"
+                Orientation="Horizontal"
+                >
+                <StackLayout
+                    
+                    Orientation="Horizontal"
+                    >
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer   Command="{Binding BackCommand}" />
+                    </StackLayout.GestureRecognizers>
+                    <ffSvg:SvgCachedImage Source="back_white.svg" HeightRequest="20" WidthRequest="20"/>
+                    <Label Text="Login Page"
+                       Margin="10,0,0,0"
+
+                           TextColor="White"
+                           FontAttributes="Bold"
+                       VerticalOptions="CenterAndExpand"
+                       />
+
+                </StackLayout>
+                
+
+            </StackLayout>
+        <StackLayout
+            Grid.Row="1"
+           VerticalOptions="FillAndExpand"
+            
+            >
+            <StackLayout
+            Orientation="Horizontal"
+               
+            >
+                    <Grid
+                        HorizontalOptions="FillAndExpand"
+                        
+                        >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Email:" VerticalOptions="CenterAndExpand" TextColor="#63f67f" />
+                        <Entry Grid.Column="1" Placeholder="Enter your email"  HorizontalOptions="FillAndExpand" FontSize="Small" TextColor="Black" Text="{Binding Email,Mode=TwoWay}"/>
+                    </Grid>
+                </StackLayout>
+            <StackLayout
+            Orientation="Horizontal"
+                
+            >
+                    <Grid
+                        HorizontalOptions="FillAndExpand"
+                        
+                        >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Username:" VerticalOptions="CenterAndExpand" TextColor="#63f67f" />
+                        <Entry Grid.Column="1" Placeholder="Enter your username"  HorizontalOptions="FillAndExpand" FontSize="Small" Text="{Binding Username,Mode=TwoWay}"/>
+                    </Grid>
+                </StackLayout>
+            <StackLayout
+            Orientation="Horizontal"
+                HorizontalOptions="FillAndExpand"
+               
+            >
+                    <Grid
+                        HorizontalOptions="FillAndExpand"
+                        
+                        >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Password:" VerticalOptions="CenterAndExpand" TextColor="#63f67f" />
+                        <Entry Grid.Column="1" Placeholder="Enter your password" HorizontalOptions="FillAndExpand" IsPassword="True" FontSize="Small" Text="{Binding Password}" />
+                    </Grid>
+                </StackLayout>
+            <StackLayout
+            Orientation="Horizontal"
+
+                >
+                    <Grid
+                        HorizontalOptions="FillAndExpand"
+                        >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Confirm Password:" VerticalOptions="CenterAndExpand" TextColor="#63f67f" />
+                        <Entry Grid.Column="1" Placeholder="Please confirm your password" HorizontalOptions="FillAndExpand" FontSize="Small" IsPassword="True" Text="{Binding ConfirmPassword}"/>
+                    </Grid>
+                  
+            </StackLayout>
+                
+                <Button Text="Register" BackgroundColor="{StaticResource MainBackGroundColor}" TextColor="White" Command="{Binding RegisterCommand}" />
+              
+                    <ListView
+                   Grid.Row="0"
+                    VerticalOptions="End"
+                    ItemsSource="{Binding ErrorList}"
+                    SeparatorVisibility="None"
+                    HasUnevenRows="True"
+                    HeightRequest="300"
+                    >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout
+                                    
+                                    >
+                                        <Label  Text="{Binding .,StringFormat='- {0}'}" TextColor="Red" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

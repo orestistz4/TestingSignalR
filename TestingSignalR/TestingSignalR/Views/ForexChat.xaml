@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="LightGreen"
+             xmlns:local="clr-namespace:TestingSignalR.Converters"
+             x:Class="TestingSignalR.Views.ForexChat">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ChgConverter x:Key="ChgConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+  
+        <StackLayout>
+         
+            <ListView
+                SeparatorVisibility="None"
+                HasUnevenRows="True"
+                ItemsSource="{Binding ForexList}"
+                >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell
+                            
+                            >
+                            <Grid
+                                Padding="5"
+                                Margin="5"
+                                
+                                BackgroundColor="White"
+                                >
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition  Width="40*" />
+                                    <ColumnDefinition  Width="20*" />
+                                    <ColumnDefinition  Width="40*" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout
+                                    Grid.Column="0"
+                                    >
+                                    <Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" />
+                                    <Label Text="{Binding Bid,StringFormat='Bid: {0}'}" />
+                                    <Label Text="{Binding Ask,StringFormat='Ask: {0}'}" />
+                                </StackLayout>
+
+                                <StackLayout
+                                    HorizontalOptions="EndAndExpand"
+                                    Grid.Column="2"
+                                    >
+                                    <Label Text="{Binding High,StringFormat='High: {0}'}" />
+                                    <Label Text="{Binding Low,StringFormat='Low: {0}'}" />
+                                    <Label Text="{Binding Chg,StringFormat='Chg: {0}'}" TextColor="Green" >
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Chg,Converter={StaticResource ChgConverter}}" Value="False">
+                                                <Setter Property="TextColor" Value="Red" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </StackLayout>
+
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

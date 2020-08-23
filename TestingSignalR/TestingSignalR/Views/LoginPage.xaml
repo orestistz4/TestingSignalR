@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="White"
+             xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="TestingSignalR.Views.LoginPage">
+    <ContentPage.Content>
+        <Grid
+            Padding="10"
+            RowSpacing="0"
+            
+            >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <StackLayout
+                Grid.Row="0"
+                BackgroundColor="White"
+               
+                >
+            <ffSvg:SvgCachedImage Source="share.svg" WidthRequest="200" HeightRequest="180"/>
+                <Label Text="Welcome to our app!!" HorizontalOptions="CenterAndExpand" FontSize="Medium" TextColor="#63f67f"  />
+            </StackLayout>
+
+
+            <StackLayout
+                BackgroundColor="White"
+                 Grid.Row="1"
+                Padding="5"
+                >
+                <StackLayout
+                   
+                Orientation="Horizontal"
+                >
+                    <Grid
+                        HorizontalOptions="FillAndExpand"
+                       
+                        >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  Width="20*" />
+                            <ColumnDefinition  Width="80*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Email:" VerticalOptions="CenterAndExpand" TextColor="#63f67f" />
+                        <Entry Grid.Column="1" Placeholder="Enter your email" Text="{Binding Email,Mode=TwoWay}" HorizontalOptions="FillAndExpand" FontSize="Small"  />
+                    </Grid>
+                    
+                </StackLayout>
+                <!--<StackLayout
+                Orientation="Horizontal"
+                >
+                    <Label Text="Username:" VerticalOptions="CenterAndExpand" TextColor="Black" />
+                    <Entry  Placeholder="Enter your username" Text="{Binding Username,Mode=TwoWay}" HorizontalOptions="FillAndExpand" FontSize="Small" />
+                </StackLayout>-->
+                <StackLayout
+                Orientation="Horizontal"
+                >
+                    <Grid
+                         
+                        HorizontalOptions="FillAndExpand"
+                        >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="80*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Password:" VerticalOptions="CenterAndExpand" TextColor="#63f67f" />
+                        <Entry Grid.Column="1" Placeholder="Enter your password" Text="{Binding Password,Mode=TwoWay}" IsPassword="True" HorizontalOptions="FillAndExpand" FontSize="Small" />
+                    </Grid>
+                    
+                </StackLayout>
+               <!-- <StackLayout
+                Orientation="Horizontal"
+                >
+                    <Label Text="Confirm Password:" VerticalOptions="CenterAndExpand" TextColor="Black" />
+                    <Entry  Placeholder="Confirm your password!" Text="{Binding ConfirmPassword,Mode=TwoWay}" IsPassword="True" HorizontalOptions="FillAndExpand" FontSize="Small" />
+                </StackLayout>-->
+
+                <Button Text="Register" Command="{Binding CreateCommand}" TextColor="White" BackgroundColor="{StaticResource MainBackGroundColor}" />
+                <Button Text="CheckUser" Command="{Binding CheckUserCommand}" TextColor="White" BackgroundColor="{StaticResource MainBackGroundColor}" />
+            </StackLayout>
+            <StackLayout
+                BackgroundColor="White"
+                Grid.Row="2"
+                VerticalOptions="EndAndExpand"
+                >
+                <Button Text="Create Account" Command="{Binding CreateAccount}" TextColor="White" BackgroundColor="{StaticResource MainBackGroundColor}"  />
+
+            </StackLayout>
+        </Grid>
+      
+    </ContentPage.Content>
+</ContentPage>
