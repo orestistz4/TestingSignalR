@@ -93,8 +93,8 @@ namespace TestingSignalR.Services
 					string resultsContent = await result.Content.ReadAsStringAsync();
 					if (result.IsSuccessStatusCode)
 					{
-						var resultObj = JsonConvert.DeserializeObject<T>(resultsContent);
-						return resultObj;
+						//var resultObj = JsonConvert.DeserializeObject<T>(resultsContent);
+						return default(T);
 					}
 					else
 					{

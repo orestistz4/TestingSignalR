@@ -26,7 +26,7 @@ namespace TestingSignalR.Hubs
 		public  async Task Init()
 		{
 
-			hubConnection = new HubConnectionBuilder().WithUrl("http://192.168.1.174:45455/messages").Build();
+			hubConnection = new HubConnectionBuilder().WithUrl("http://www.sasgamawre.online/messages").Build();
 			
 			hubConnection.On<string>("ReceiveMessage", (s) =>
 			{

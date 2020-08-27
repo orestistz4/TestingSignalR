@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TestingSignalR.Database;
 using TestingSignalR.Modals;
 using TestingSignalR.Models;
+using TestingSignalR.Popups;
 using TestingSignalR.Services;
 using Xamarin.Forms;
 
@@ -12,6 +14,8 @@ namespace TestingSignalR.ViewModels
 	public class LoginPageViewModel:BaseViewModel
 	{
 
+		private bool isChecked;
+		public bool IsChecked { get { return isChecked; } set { SetProperty(ref isChecked,value); } }
 
 
 		private ChatServer server;
@@ -34,10 +38,24 @@ namespace TestingSignalR.ViewModels
 		public LoginPageViewModel()
 		{
 			server = new ChatServer();
-			CreateCommand = new Command(CreateFunction);
+			//CreateCommand = new Command(CreateFunction);
+			CreateCommand = new Command(async()=>await Shell.Current.Navigation.PushPopupAsync(new InfoPopup("The description","The message")));
 			database = new MobileUserDB();
 			CheckUserCommand = new Command(CheckUser);
-			CreateAccount = new Command(async()=>await Shell.Current.Navigation.PushModalAsync(new RegisterPageView()));
+			CreateAccount = new Command(async()=> {
+
+				try
+				{
+					await Shell.Current.Navigation.PushModalAsync(new RegisterPageView());
+				}catch(Exception ex)
+				{
+					await App.Current.MainPage.Navigation.PushModalAsync(new RegisterPageView());
+					Console.WriteLine("");
+					Console.WriteLine(ex.Message);
+				}
+
+
+			});
 
 		}
 
@@ -59,12 +77,40 @@ namespace TestingSignalR.ViewModels
 
 		private async void CheckUser()
 		{
-
+			
 			var user = new LoginUserModel() { Email=Email,Password=Password,RememberMe=true};
 			var result = await server.LoginUser(user);
 			if (result == default(MobileUserServer))
 			{
 				//peta tou popup oti kanei egine alani
+				//edw to login einai unsuccesfull
+				try
+				{
+					await Shell.Current.Navigation.PushPopupAsync(new InfoPopup("Error", "Something went wrong please enter valid credentials!"));
+				}
+				catch(NullReferenceException ex)
+				{
+					await App.Current.MainPage.Navigation.PushPopupAsync(new InfoPopup("Error", "Something went wrong please enter valid credentials!"));
+				}
+			}
+			else
+			{
+				//successful login!!! kane kati
+				if (IsChecked)
+				{
+					var user_temp = new MobileUser() { Email=user.Email,Password=user.Password};
+					try
+					{
+
+					
+					await database.createUser(user_temp);
+					}catch(Exception ex)
+					{
+						await App.Current.MainPage.Navigation.PushPopupAsync(new InfoPopup("Error","Couldnt save user in the localdb!"));
+					}
+				}
+				App.Current.MainPage = new AppShell();
+
 			}
 			Console.WriteLine("");
 			Console.WriteLine("");

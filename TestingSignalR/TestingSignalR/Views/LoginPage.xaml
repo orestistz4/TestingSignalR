@@ -80,8 +80,15 @@
                     <Entry  Placeholder="Confirm your password!" Text="{Binding ConfirmPassword,Mode=TwoWay}" IsPassword="True" HorizontalOptions="FillAndExpand" FontSize="Small" />
                 </StackLayout>-->
 
-                <Button Text="Register" Command="{Binding CreateCommand}" TextColor="White" BackgroundColor="{StaticResource MainBackGroundColor}" />
-                <Button Text="CheckUser" Command="{Binding CheckUserCommand}" TextColor="White" BackgroundColor="{StaticResource MainBackGroundColor}" />
+                <!--<Button Text="Register" Command="{Binding CreateCommand}" TextColor="White" BackgroundColor="{StaticResource MainBackGroundColor}" />-->
+                <StackLayout
+                    Orientation="Horizontal"
+                    >
+                    <CheckBox  x:Name="checkBoxRememberMe" IsChecked="{Binding IsChecked}"/>
+                    <Label Text="Remember me"/>
+
+                </StackLayout>
+                <Button Text="Login" Command="{Binding CheckUserCommand}" TextColor="White" BackgroundColor="{StaticResource MainBackGroundColor}" />
             </StackLayout>
             <StackLayout
                 BackgroundColor="White"

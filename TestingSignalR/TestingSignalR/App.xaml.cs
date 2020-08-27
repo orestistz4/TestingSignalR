@@ -29,10 +29,15 @@ namespace TestingSignalR
 			try
 			{
 				MainPage = new LoginPage();
+				//MainPage = new AppShell();			
 				var user = await database.checkIfUserExists();
 				if (user != default(MobileUser))
 				{
 					MainPage = new AppShell();
+				}
+				else
+				{
+					MainPage = new LoginPage();
 				}
 
 				

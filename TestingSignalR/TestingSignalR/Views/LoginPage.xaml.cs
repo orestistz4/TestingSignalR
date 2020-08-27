@@ -13,14 +13,18 @@ namespace TestingSignalR.Views
 	public partial class LoginPage : ContentPage
 	{
 
+		
 
 		private LoginPageViewModel vm;
 		public LoginPage()
 		{
 			InitializeComponent();
 			vm = new LoginPageViewModel();
+			
 			BindingContext = vm;
 		}
+
+
 
 	
 	}

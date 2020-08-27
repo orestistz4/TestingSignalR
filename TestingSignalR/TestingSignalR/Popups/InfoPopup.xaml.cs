@@ -14,10 +14,10 @@ namespace TestingSignalR.Popups
 	{
 
 		private InfoPopupViewModel vm;
-		public InfoPopup()
+		public InfoPopup(string desc,string message)
 		{
 			InitializeComponent();
-			vm = new InfoPopupViewModel();
+			vm = new InfoPopupViewModel(desc,message);
 			BindingContext = vm;
 		}
 	}

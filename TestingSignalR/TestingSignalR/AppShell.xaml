@@ -35,17 +35,23 @@
     <!-- Your Pages -->
     <TabBar>
         <Tab Title="Browse" Icon="tab_feed.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}" />
+            <ShellContent ContentTemplate="{DataTemplate local:ForexChat}"  />
         </Tab>
         <Tab Title="Chat" Icon="tab_about.png">
             <ShellContent Title="ChatPageView" ContentTemplate="{DataTemplate local:ChatPageView}" />
-            <ShellContent Title="ForexChat" ContentTemplate="{DataTemplate local:ForexChat}" />
+            
             <ShellContent Title="CustomRooms" ContentTemplate="{DataTemplate local:CustomRooms}" />
         </Tab>
     </TabBar>
 
     <Shell.FlyoutHeader>
-        <Label Text="the hader bitch" />
+        <StackLayout>
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+            </StackLayout.GestureRecognizers>
+            <Label Text="Logout" />
+        </StackLayout>
+        
     </Shell.FlyoutHeader>
 
    <!-- <MenuItem  Text="ep" />

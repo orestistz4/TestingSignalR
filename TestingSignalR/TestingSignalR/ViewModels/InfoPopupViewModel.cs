@@ -17,12 +17,27 @@ namespace TestingSignalR.ViewModels
 
 		public Command ClosePopup { get; set; }
 
-		/*public InfoPopupViewModel(string desc,string mesage)
+		public InfoPopupViewModel(string desc,string mesage)
 		{
-			ClosePopup = new Command(async()=>await Shell.Current.Navigation.PopPopupAsync());
+			ClosePopup = new Command(async () =>
+			{
+
+				try
+				{
+					await Shell.Current.Navigation.PopPopupAsync();
+				}
+
+				catch (NullReferenceException ex)
+				{
+					await App.Current.MainPage.Navigation.PopPopupAsync();
+				}
+			}
+
+
+			); ;
 			ErrorDescription = desc;
 			ErrorMessage = mesage;
-		}*/
+		}
 
 	}
 }

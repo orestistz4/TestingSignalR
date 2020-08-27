@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using TestingSignalR.Database;
 using TestingSignalR.Models;
 using TestingSignalR.Popups;
 using TestingSignalR.Services;
@@ -29,7 +30,7 @@ namespace TestingSignalR.ViewModels
 		private bool confirmPasswordError;
 		public bool ConfirmPasswordError { get { return confirmPasswordError; } set { SetProperty(ref confirmPasswordError, value); } }
 
-
+		private MobileUserDB database;
 
 
 		private string email;
@@ -45,7 +46,17 @@ namespace TestingSignalR.ViewModels
 		public Command RegisterCommand { get; set; }
 		public RegisterPageViewModel()
 		{
-			BackCommand = new Command(async()=>await Shell.Current.Navigation.PopModalAsync());
+			BackCommand = new Command(async()=> {
+
+				try {
+					await Shell.Current.Navigation.PopModalAsync();
+				}catch(Exception ex)
+				{
+					await App.Current.MainPage.Navigation.PopModalAsync();
+				}
+
+
+				});
 			RegisterCommand = new Command(RegisterFunction);
 			//RegisterCommand = new Command(async()=>await Shell.Current.Navigation.PushPopupAsync(new InfoPopup()));
 			EmailError = false;
@@ -54,6 +65,7 @@ namespace TestingSignalR.ViewModels
 			ConfirmPasswordError = false;
 			server = new ChatServer();
 			ErrorList = new ObservableCollection<string>();
+			database = new MobileUserDB();
 			
 		}
 
@@ -67,6 +79,27 @@ namespace TestingSignalR.ViewModels
 
 				var user = new RegisterUserModel() {UserName=Username,Password=Password,Email=Email };
 				var error = await server.RegisterUser(user);
+				if (error == null)
+				{
+					//registration is complete!!!!
+					//ErrorList.Add("Register Succesfully");
+					var temp_user = new MobileUser() { Email=user.Email,Username=user.UserName,Password=user.Password};
+					await database.createUser(temp_user);
+					try {
+						await Shell.Current.Navigation.PushPopupAsync(new InfoPopup("Info", "Account successfully created!!"));
+
+					}
+					catch (Exception ex) {
+
+						await App.Current.MainPage.Navigation.PushPopupAsync(new InfoPopup("Info", "Account successfully created!!"));
+					
+					}
+					
+					
+					
+					
+					return;
+				}
 				List<string> errorss = JsonConvert.DeserializeObject<List<string>>(error);
 
 				var obsErrorss = new ObservableCollection<string>(errorss);

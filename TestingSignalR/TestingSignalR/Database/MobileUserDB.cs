@@ -1,10 +1,12 @@
-﻿using SQLite;
+﻿using Rg.Plugins.Popup.Extensions;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestingSignalR.Models;
+using TestingSignalR.Popups;
 using Xamarin.Forms;
 
 namespace TestingSignalR.Database
@@ -83,6 +85,27 @@ namespace TestingSignalR.Database
 				Console.WriteLine("sth happend");
 				//dn 8a tou lew tsekare to connection apla kane to mainpage na einai 3ana to loginpage!!!
 				return default(MobileUser);
+			}
+		}
+
+		public async Task DropTable()
+		{
+			try
+			{
+
+				var result = await _sqlconnection.DropTableAsync<MobileUser>();
+
+
+			}catch(Exception ex)
+			{
+				try
+				{
+					await Shell.Current.Navigation.PushPopupAsync(new InfoPopup("Info","Logout successfully."));
+				}
+				catch (NullReferenceException exx)
+				{
+					await App.Current.MainPage.Navigation.PushPopupAsync(new InfoPopup("Info", "Logout successfully."));
+				}
 			}
 		}
 

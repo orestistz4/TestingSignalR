@@ -9,7 +9,7 @@ namespace TestingSignalR.Services
 {
 	public class ChatServer:HttpClientBase
 	{
-		public static string HostName = "http://192.168.1.174:45455/";
+		public static string HostName = "http://www.sasgamawre.online/";
 
 
 
