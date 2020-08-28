@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -38,8 +39,15 @@ namespace TestingSignalR.Services
 		public async Task<T> Request<T>(RequestMode mode,string urlPar,string payload="")
 		{
 
+			
+				
+
 			try
 			{
+				if (!CrossConnectivity.Current.IsConnected)
+				{
+					throw new NoInternetException("Please check your Internet Connection...");
+				}
 				string url = HostName + urlPar;
 
 				using (var result=(mode==RequestMode.GET)?await Client.GetAsync(url):await Client.PostAsync(url,new StringContent(payload, Encoding.UTF8, "application/json")))
@@ -59,9 +67,14 @@ namespace TestingSignalR.Services
 
 				}
 			}
+			catch(NoInternetException ex)
+			{
+				return default(T);
+
+			}
 			catch(Exception ex)
 			{
-
+				
 				Console.WriteLine("sth happend");
 				return default(T);
 
@@ -116,7 +129,7 @@ namespace TestingSignalR.Services
 			{
 
 				Console.WriteLine("sth happend");
-				return default(T);
+				return (T)(object)ex.Message;
 
 
 			}

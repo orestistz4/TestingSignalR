@@ -9,8 +9,8 @@ namespace TestingSignalR.Services
 {
 	public class ChatServer:HttpClientBase
 	{
-		public static string HostName = "http://www.sasgamawre.online/";
-
+		//public static string HostName = "http://www.sasgamawre.online/";
+		public static string HostName = "http://192.168.42.234:51040/";
 
 
 
@@ -68,6 +68,18 @@ namespace TestingSignalR.Services
 
 			var payload = JsonConvert.SerializeObject(roomName);
 			return await Post<string>("api/home/createroom", payload);
+
+
+
+
+		}
+
+		public async Task<bool> JoinRoom(string roomName)
+		{
+
+
+			var payload = JsonConvert.SerializeObject(roomName);
+			return await Post<bool>("api/home/joinroom", payload);
 
 
 

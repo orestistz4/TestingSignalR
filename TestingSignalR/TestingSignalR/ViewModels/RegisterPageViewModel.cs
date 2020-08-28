@@ -100,10 +100,21 @@ namespace TestingSignalR.ViewModels
 					
 					return;
 				}
-				List<string> errorss = JsonConvert.DeserializeObject<List<string>>(error);
 
-				var obsErrorss = new ObservableCollection<string>(errorss);
-				ErrorList = obsErrorss;
+				try {
+
+					List<string> errorss = JsonConvert.DeserializeObject<List<string>>(error);
+
+					var obsErrorss = new ObservableCollection<string>(errorss);
+					ErrorList = obsErrorss;
+				}
+				catch (JsonException ex)
+				{
+
+					await App.Current.MainPage.Navigation.PushPopupAsync(new InfoPopup("Error", error));
+
+				}
+				
 				
 
 			}
