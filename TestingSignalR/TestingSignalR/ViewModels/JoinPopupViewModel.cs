@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using TestingSignalR.Models;
+using TestingSignalR.Popups;
 using TestingSignalR.Services;
 using Xamarin.Forms;
 
@@ -36,8 +38,28 @@ namespace TestingSignalR.ViewModels
 
 		private async Task JoinFunction()
 		{
-			var result = await server.JoinRoom(RoomName);
-			Console.WriteLine("asdf");
+
+
+			try {
+
+				var result = await server.JoinRoom(RoomName);
+				if (result==true) {
+
+					var addUserRoom = await server.CreateUserRoom(new UserRoom() { Room = RoomName, Email = App.CurrentUserEmail });
+					await Shell.Current.Navigation.PushPopupAsync(new InfoPopup("Info",addUserRoom.response));
+
+				}
+
+			}
+			catch(Exception ex)
+			{
+
+				Console.WriteLine("STH HAPPEND");
+				await Shell.Current.Navigation.PushPopupAsync(new InfoPopup("Erro",ex.Message));
+
+			}
+			
+			
 
 
 		}

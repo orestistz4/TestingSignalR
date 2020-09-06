@@ -104,7 +104,9 @@ namespace TestingSignalR.ViewModels
 
 					
 					await database.createUser(user_temp);
-					}catch(Exception ex)
+						App.CurrentUserEmail = user_temp.Email;
+					}
+					catch(Exception ex)
 					{
 						await App.Current.MainPage.Navigation.PushPopupAsync(new InfoPopup("Error","Couldnt save user in the localdb!"));
 					}

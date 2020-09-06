@@ -69,13 +69,14 @@ namespace TestingSignalR.Services
 			}
 			catch(NoInternetException ex)
 			{
+				throw new Exception("Please Check your Internet Connection...");
 				return default(T);
 
 			}
 			catch(Exception ex)
 			{
-				
-				Console.WriteLine("sth happend");
+
+				throw new Exception(ex.Message);
 				return default(T);
 
 

@@ -24,9 +24,9 @@ namespace TestingSignalR.ViewModels
 		{
 
 
-			//CreateCommand = new Command(async()=>await Shell.Current.Navigation.PushPopupAsync(new CreateRoomPopup()));
+			CreateRoomCommand = new Command(async()=>await Shell.Current.Navigation.PushPopupAsync(new CreateRoomPopup()));
 			CreateCommand = new Command(async()=>await Shell.Current.Navigation.PushModalAsync(new LoginPage()));
-			CreateRoomCommand = new Command(async()=>await Shell.Current.Navigation.PushAsync(new RoomView("chatroom1")));
+			//CreateRoomCommand = new Command(async()=>await Shell.Current.Navigation.PushAsync(new RoomView("chatroom1")));
 			JoinCommand = new Command(async()=>await Shell.Current.Navigation.PushPopupAsync(new JoinPopup()));
 
 

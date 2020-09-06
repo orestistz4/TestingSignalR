@@ -77,7 +77,19 @@ namespace TestingSignalR.Hubs
 			}
 		}
 
-	
+		public async Task SendGroupMessage(string roomName,MessageModel message)
+		{
+			try
+			{
+				await hubConnection.InvokeAsync("SendToGroup", roomName,message);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+		}
+
+
 
 	}
 }

@@ -9,10 +9,11 @@ namespace TestingSignalR.Services
 {
 	public class ChatServer:HttpClientBase
 	{
-		//public static string HostName = "http://www.sasgamawre.online/";
-		public static string HostName = "http://192.168.42.234:51040/";
-
-
+		public static string HostName = "http://www.sasgamawre.online/";
+		//public static string HostName = "http://192.168.42.234:51040/";
+		//public static string HostName = "http://192.168.1.174:45456/";
+		
+		
 
 
 		public ChatServer():base(HostName)
@@ -74,12 +75,25 @@ namespace TestingSignalR.Services
 
 		}
 
-		public async Task<bool> JoinRoom(string roomName)
+		public async Task<bool?> JoinRoom(string roomName)
 		{
 
 
 			var payload = JsonConvert.SerializeObject(roomName);
-			return await Post<bool>("api/home/joinroom", payload);
+			return await Post<bool?>("api/home/joinroom", payload);
+
+
+
+
+		}
+		
+
+			public async Task<ResponseModel> CreateUserRoom(UserRoom room)
+		{
+
+
+			var payload = JsonConvert.SerializeObject(room);
+			return await Post<ResponseModel>("api/home/createuserroom", payload);
 
 
 

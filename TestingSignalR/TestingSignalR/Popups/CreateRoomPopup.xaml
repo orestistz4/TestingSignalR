@@ -16,7 +16,7 @@
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-        <Entry Placeholder="Create your chat room" />
+        <Entry Placeholder="Create your chat room" Text="{Binding RoomName,Mode=TwoWay}" />
         <Button Command="{Binding CreateCommand}" Text="Create" />
     </StackLayout>
     
