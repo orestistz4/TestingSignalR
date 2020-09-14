@@ -28,12 +28,12 @@
                 </ffSvg:SvgCachedImage.GestureRecognizers>
             </ffSvg:SvgCachedImage>
         </StackLayout>
-        <Label  Text="{Binding RoomName,Mode=TwoWay,StringFormat='Are you sure you want to delete {0} ?'}"/>
+        <Label  Text="{Binding RoomName,StringFormat='Are you sure you want to delete {0} ?'}"/>
         <StackLayout
             Orientation="Horizontal"
             
             >
-            <Button Margin="5" BackgroundColor="{StaticResource MainBackGroundColor}" TextColor="White" Command="{Binding DeleteCommand}" Text="Join" HorizontalOptions="StartAndExpand"/>
+            <Button Margin="5" BackgroundColor="{StaticResource MainBackGroundColor}" TextColor="White" Command="{Binding DeleteCommand}" Text="Delete" HorizontalOptions="StartAndExpand"/>
             <Button Margin="5" BackgroundColor="{StaticResource MainBackGroundColor}" TextColor="White" Command="{Binding CancelCommand}" Text="Cancel" />
         </StackLayout>
 

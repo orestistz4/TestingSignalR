@@ -39,7 +39,8 @@ namespace TestingSignalR.ViewModels
 
 				var response = await server.DeleteUserRoom(new UserRoom() {Email=App.CurrentUserEmail,Room=RoomName });
 				await Shell.Current.Navigation.PopPopupAsync();
-				await Shell.Current.Navigation.PopModalAsync();
+
+				await Shell.Current.Navigation.PopAsync();
 
 
 			}catch(Exception ex)

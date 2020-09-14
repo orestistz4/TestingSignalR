@@ -110,7 +110,7 @@ namespace TestingSignalR.Services
 		public async Task<ResponseModel> DeleteUserRoom(UserRoom room)
 		{
 			var payload = JsonConvert.SerializeObject(room);
-			return await Post<ResponseModel>("api/home/getuserrooms", payload);
+			return await Post<ResponseModel>("api/home/deleteuserroom", payload);
 		}
 
 		public async Task<List<GroupMessages>> GetGroypMessages(string room)
