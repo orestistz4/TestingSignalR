@@ -6,6 +6,7 @@
        mc:Ignorable="d"
        xmlns:local="clr-namespace:TestingSignalR.Views"
        Title="TestingSignalR"
+       xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
        FlyoutBehavior="Flyout"
        
        x:Class="TestingSignalR.AppShell">
@@ -38,19 +39,62 @@
             <ShellContent ContentTemplate="{DataTemplate local:ForexChat}"  />
         </Tab>
         <Tab Title="Chat" Icon="tab_about.png">
-            <ShellContent Title="ChatPageView" ContentTemplate="{DataTemplate local:ChatPageView}" />
+           
             
             <ShellContent Title="CustomRooms" ContentTemplate="{DataTemplate local:CustomRooms}" />
         </Tab>
     </TabBar>
 
-    <Shell.FlyoutHeader>
-        <StackLayout>
-            <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-            </StackLayout.GestureRecognizers>
-            <Label Text="Logout" />
-        </StackLayout>
+    <Shell.FlyoutHeader
+        
+        >
+        
+        <Grid
+              BackgroundColor="White"         
+           
+            >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackLayout
+                BackgroundColor="{StaticResource MainBackGroundColor}"
+                Grid.Row="0"
+                
+                Orientation="Horizontal"
+                >
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="CenterAndExpand"
+                    >
+                    <ffSvg:SvgCachedImage  VerticalOptions="CenterAndExpand" Source="share_white.svg" HeightRequest="50" WidthRequest="50"/>
+                    <Label Text="your app..." TextColor="White" VerticalOptions="CenterAndExpand" VerticalTextAlignment="End" />
+                </StackLayout>
+               
+
+
+            </StackLayout>
+            <StackLayout
+                Grid.Row="1"
+                BackgroundColor="White"
+                >
+                <Grid>
+                    <StackLayout
+                        Padding="10"
+                        Orientation="Horizontal"
+                        HorizontalOptions="CenterAndExpand"
+                        >
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </StackLayout.GestureRecognizers>
+                        <ffSvg:SvgCachedImage Source="logout.svg" HeightRequest="20" WidthRequest="20"/>
+                        <Label Text="Logout" TextColor="Black" />
+                    </StackLayout>
+                </Grid>
+               
+            </StackLayout>
+           
+        </Grid>
         
     </Shell.FlyoutHeader>
 

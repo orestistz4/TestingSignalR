@@ -39,7 +39,7 @@ namespace TestingSignalR.ViewModels
 			
 
 		}
-
+		
 		public void ReceiveMessagew(object sender,string s)
 		{
 			ListItems.Add(s);

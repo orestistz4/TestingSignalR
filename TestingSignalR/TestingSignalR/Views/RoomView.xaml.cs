@@ -23,6 +23,7 @@ namespace TestingSignalR.Views
 			InitializeComponent();
 			hubBase = new HubBase();
 			vm = new RoomViewModel(roomName);
+			this.Title = roomName;
 			vm.ChatHub = hubBase;
 			vm.ChatHub.Messages += vm.ReceiveMessage;
 			
@@ -35,9 +36,16 @@ namespace TestingSignalR.Views
 		protected override async void OnAppearing()
 		{
 			base.OnAppearing();
+			Shell.SetTabBarIsVisible(this, false);
 			await vm.onAppearing();
 
 			
+		}
+
+		protected override void OnDisappearing()
+		{
+			base.OnDisappearing();
+			Shell.SetTabBarIsVisible(this, true);
 		}
 	}
 }

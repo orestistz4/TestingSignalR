@@ -111,6 +111,7 @@ namespace TestingSignalR.ViewModels
 						await App.Current.MainPage.Navigation.PushPopupAsync(new InfoPopup("Error","Couldnt save user in the localdb!"));
 					}
 				}
+				App.CurrentUserEmail = user.Email;
 				App.Current.MainPage = new AppShell();
 
 			}

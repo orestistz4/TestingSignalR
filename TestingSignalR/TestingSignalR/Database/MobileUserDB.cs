@@ -70,7 +70,7 @@ namespace TestingSignalR.Database
 			try { 
 
 			var user = await _sqlconnection.Table<MobileUser>().ToListAsync();
-			if (user != null)
+			if (user != null || user.Count!=0)
 			{
 				var savedUser = user.Last();
 				return savedUser;

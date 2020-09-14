@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using TestingSignalR.Database;
+using TestingSignalR.Hubs;
 using TestingSignalR.Popups;
 using TestingSignalR.Views;
 using Xamarin.Forms;
@@ -12,12 +13,31 @@ namespace TestingSignalR
 	{
 
 		private MobileUserDB database;
+		private HubBase hub;
 
 		public AppShell()
 		{
 			InitializeComponent();
 			database = new MobileUserDB();
+			
+			
 		}
+
+
+		
+
+		public void onPageAppear(object sender,string message)
+		{
+			Console.WriteLine("trigger here!!");
+		}
+
+		protected override void OnDisappearing()
+		{
+			base.OnDisappearing();
+			
+		}
+
+
 
 		private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
 		{
@@ -26,6 +46,7 @@ namespace TestingSignalR
 			try
 			{
 				await database.DropTable();
+				App.CurrentUserEmail = null;
 				App.Current.MainPage = new LoginPage();
 			}catch(Exception ex)
 			{

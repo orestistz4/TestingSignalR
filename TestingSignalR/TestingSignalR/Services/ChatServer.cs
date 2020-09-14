@@ -100,10 +100,31 @@ namespace TestingSignalR.Services
 
 		}
 
+		
+				public async Task<List<UserRoom>> GetUserRooms(string email)
+				{
+			var payload = JsonConvert.SerializeObject(email);
+			return await Post<List<UserRoom>>("api/home/getuserrooms", payload);
+		}
+
+		public async Task<ResponseModel> DeleteUserRoom(UserRoom room)
+		{
+			var payload = JsonConvert.SerializeObject(room);
+			return await Post<ResponseModel>("api/home/getuserrooms", payload);
+		}
+
+		public async Task<List<GroupMessages>> GetGroypMessages(string room)
+		{
+			var payload = JsonConvert.SerializeObject(room);
+			return await Post<List<GroupMessages>>("api/home/getgroupmessages", payload);
+		}
 
 
-
-
+		public async Task<ResponseModel> SendGroupMessage(MessageModel messageModel)
+		{
+			var payload = JsonConvert.SerializeObject(messageModel);
+			return await Post<ResponseModel>("api/home/sendmessage", payload);
+		}
 
 	}
 }

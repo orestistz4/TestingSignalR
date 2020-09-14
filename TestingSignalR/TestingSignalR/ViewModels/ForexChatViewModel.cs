@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TestingSignalR.Hubs;
 using TestingSignalR.Models;
+using TestingSignalR.Views;
+using Xamarin.Forms;
 
 namespace TestingSignalR.ViewModels
 {
@@ -36,6 +38,11 @@ namespace TestingSignalR.ViewModels
 		public HubBase ChatHub { get; set; }
 
 
+		public async void AppearPage(object sender,string message)
+		{
+			Console.WriteLine("ss");
+			await Shell.Current.Navigation.PushModalAsync(new TestPage());
+		}
 		public ForexChatViewModel()
 		{
 			ForexList = new ObservableCollection<ForexSymbol>();
@@ -47,6 +54,7 @@ namespace TestingSignalR.ViewModels
 			try
 			{
 				await ChatHub.Init();
+				await ChatHub.CustomePageAppear();
 				await ChatHub.hubConnection.StartAsync();
 			} catch (Exception ex)
 			{
@@ -58,6 +66,7 @@ namespace TestingSignalR.ViewModels
 
 
 		}
+	
 
 		public void ReceiveForexSymbols(object sender, List<ForexSymbol> s)
 		{

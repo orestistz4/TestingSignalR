@@ -4,12 +4,13 @@ using System.Text;
 
 namespace TestingSignalR.Models
 {
-	public class MessageModel
+	public class GroupMessages
 	{
+
+		public string GroupName { get; set; }
 		public string Message { get; set; }
-		public DateTime Date { get; set; }
-		public string Group { get; set; }
-		public  string Email { get; set; }
 		public string Username { get; set; }
+		public DateTime Date { get; set; }
+
 	}
 }

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+                 xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="TestingSignalR.Popups.LoadingPopup">
+
+
+    <StackLayout
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"
+             BackgroundColor="White"
+            WidthRequest="250"
+            HeightRequest="150"
+            >
+        <StackLayout
+            HeightRequest="50"
+            Orientation="Horizontal"
+            BackgroundColor="{StaticResource MainBackGroundColor}"
+            >
+            <Label Text="Loading" TextColor="White" VerticalOptions="CenterAndExpand" FontAttributes="Bold" Margin="10,0,0,0" />
+            <ffSvg:SvgCachedImage Margin="0,0,10,0" HorizontalOptions="EndAndExpand" Source="close_white.svg" HeightRequest="20" WidthRequest="20" >
+                <ffSvg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding ClosePopup}" />
+                </ffSvg:SvgCachedImage.GestureRecognizers>
+            </ffSvg:SvgCachedImage>
+        </StackLayout>
+        <StackLayout
+            Padding="10"
+            Orientation="Horizontal"
+            >
+            <ffSvg:SvgCachedImage  Source="share.svg" HeightRequest="50" WidthRequest="50" />
+            <Label Text="Loading " VerticalOptions="CenterAndExpand" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold"/>
+            <Grid
+                
+                
+                ColumnSpacing="0"
+                >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="8" />
+                    <ColumnDefinition  Width="8" />
+                    <ColumnDefinition  Width="8" />
+                </Grid.ColumnDefinitions>
+                <Label Text=". "  Grid.Column="0"  IsVisible="{Binding FirstDot}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="Medium" FontAttributes="Bold"/>
+                <Label Text=". " Grid.Column="1" IsVisible="{Binding SecondDot}" VerticalOptions="CenterAndExpand" FontSize="Medium" HorizontalOptions="StartAndExpand" FontAttributes="Bold" />
+                <Label Text=". " Grid.Column="2" IsVisible="{Binding ThirdDot}" VerticalOptions="CenterAndExpand" FontSize="Medium" HorizontalOptions="StartAndExpand" FontAttributes="Bold" />
+            </Grid>
+            
+
+        </StackLayout>
+    </StackLayout>
+
+
+</pages:PopupPage>

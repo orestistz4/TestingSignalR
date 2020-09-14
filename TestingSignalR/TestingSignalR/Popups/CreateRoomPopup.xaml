@@ -5,6 +5,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+     xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              x:Class="TestingSignalR.Popups.CreateRoomPopup">
     
@@ -13,11 +14,21 @@
             VerticalOptions="CenterAndExpand"
             BackgroundColor="White"
             >
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout
+            HeightRequest="50"
+            Orientation="Horizontal"
+            BackgroundColor="{StaticResource MainBackGroundColor}"
+            >
+            <Label Text="Create Room" TextColor="White" VerticalOptions="CenterAndExpand" FontAttributes="Bold" Margin="10,0,0,0" />
+            <ffSvg:SvgCachedImage Margin="0,0,10,0" HorizontalOptions="EndAndExpand" Source="close_white.svg" HeightRequest="20" WidthRequest="20">
+                <ffSvg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding ClosePopup}" />
+                </ffSvg:SvgCachedImage.GestureRecognizers>
+            </ffSvg:SvgCachedImage>
+        </StackLayout>
+
         <Entry Placeholder="Create your chat room" Text="{Binding RoomName,Mode=TwoWay}" />
-        <Button Command="{Binding CreateCommand}" Text="Create" />
+        <Button Command="{Binding CreateCommand}" Text="Create" BackgroundColor="{StaticResource MainBackGroundColor}" TextColor="White"  Margin="10" />
     </StackLayout>
     
 </pages:PopupPage>

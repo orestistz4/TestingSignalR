@@ -4,27 +4,87 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+              xmlns:local="clr-namespace:TestingSignalR.Converters"
              x:Class="TestingSignalR.Views.RoomView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem   IconImageSource="logout.png"
+                       Command="{Binding LeaveGroup}"
+                      />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+       
+        <ResourceDictionary>
+            <local:MessagesFilter x:Key="MessagesFilter" />
+            <DataTemplate x:Key="NotEqual">
+              
+                    <ViewCell>
+                        <StackLayout
+                               Margin="2"
+                                
+                                >
+                        <Label Text="{Binding Username}"  FontSize="Micro">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding Username,Converter={StaticResource MessagesFilter}}" Value="True">
+                                    <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                            <Grid
+                               
+                                >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50*"/>
+                                    <ColumnDefinition Width="50*"/>
+                                </Grid.ColumnDefinitions>
+                                <Frame
+                                    CornerRadius="15"
+                                    BackgroundColor="LightBlue"
+                                    Padding="10"
+                                    Grid.Column="0"
+                                    >
+                                <Frame.Triggers>
+                                    <DataTrigger TargetType="Frame" Binding="{Binding Username,Converter={StaticResource MessagesFilter}}" Value="True">
+                                        <Setter Property="Grid.Column" Value="1"/>
+                                        <Setter Property="BackgroundColor" Value="{StaticResource MainBackGroundColor}"/>
+                                    </DataTrigger>
+                                </Frame.Triggers>
+                                    <Label Text="{Binding Message}" TextColor="White"/>
+
+                                </Frame>
+                            </Grid>
+                            <Label Text="{Binding Date}" FontSize="Micro" HorizontalOptions="CenterAndExpand" />
+                        </StackLayout>
+
+                    </ViewCell>
+                
+            </DataTemplate>
+
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Button Command="{Binding SendMessage}" Text="Send" />
+           
+            
             <ListView
-                
+                HasUnevenRows="True"
+                SeparatorVisibility="None"
                 ItemsSource="{Binding RoomMessages}"
+                
+                ItemTemplate="{StaticResource NotEqual}"
                 >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding Message}" TextColor="Black" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                
+                
+               
             </ListView>
+            <StackLayout
+                Orientation="Horizontal"
+                >
+                <Entry Placeholder="Enter message here..." Text="{Binding TextMessage,Mode=TwoWay}" />
+                <Button Command="{Binding SendMessage}" Text="Send" BackgroundColor="{StaticResource MainBackGroundColor}" TextColor="White" />
+
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

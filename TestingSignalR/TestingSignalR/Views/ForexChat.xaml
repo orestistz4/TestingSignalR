@@ -5,8 +5,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              BackgroundColor="LightGreen"
+              xmlns:HeaderVieww="clr-namespace:TestingSignalR.Views.ContentViews"
              xmlns:local="clr-namespace:TestingSignalR.Converters"
              x:Class="TestingSignalR.Views.ForexChat">
+    <Shell.TitleView>
+        <ContentView>
+
+            <HeaderVieww:HeaderView/>
+
+        </ContentView>
+    </Shell.TitleView>
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:ChgConverter x:Key="ChgConverter" />

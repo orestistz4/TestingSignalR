@@ -84,7 +84,7 @@ namespace TestingSignalR.ViewModels
 					//registration is complete!!!!
 					//ErrorList.Add("Register Succesfully");
 					var temp_user = new MobileUser() { Email=user.Email,Username=user.UserName,Password=user.Password};
-					await database.createUser(temp_user);
+					//await database.createUser(temp_user);
 					try {
 						await Shell.Current.Navigation.PushPopupAsync(new InfoPopup("Info", "Account successfully created!!"));
 

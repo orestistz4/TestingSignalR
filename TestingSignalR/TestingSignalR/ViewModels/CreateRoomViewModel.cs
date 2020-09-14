@@ -47,6 +47,10 @@ namespace TestingSignalR.ViewModels
 					await Shell.Current.Navigation.PushPopupAsync(new InfoPopup("Info",addUserRoom.response));
 
 				}
+				else
+				{
+					throw new Exception("Room already exists!!");
+				}
 			}
 			catch (Exception ex) {
 

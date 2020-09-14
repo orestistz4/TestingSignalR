@@ -33,9 +33,10 @@ namespace TestingSignalR
 				MainPage = new LoginPage();
 				//MainPage = new AppShell();			
 				var user = await database.checkIfUserExists();
-				App.CurrentUserEmail = user.Email;
+				
 				if (user != default(MobileUser))
 				{
+					App.CurrentUserEmail = user.Email;
 					MainPage = new AppShell();
 				}
 				else

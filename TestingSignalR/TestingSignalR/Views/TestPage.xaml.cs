@@ -3,24 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestingSignalR.ViewModels;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace TestingSignalR.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CustomRooms : ContentPage
+	public partial class TestPage : ContentPage
 	{
-		private CustomRoomsViewModel vm;
-		public CustomRooms()
+		public TestPage()
 		{
 			InitializeComponent();
-			vm = new CustomRoomsViewModel();
-			BindingContext = vm;
 		}
-
-
-
 	}
 }

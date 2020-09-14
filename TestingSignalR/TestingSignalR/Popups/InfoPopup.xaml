@@ -28,7 +28,7 @@
                 </ffSvg:SvgCachedImage.GestureRecognizers>
             </ffSvg:SvgCachedImage>
         </StackLayout>
-        <Label Text="{Binding ErrorMessage}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+        <Label Padding="6" Text="{Binding ErrorMessage}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="Black" />
     </StackLayout>
     
     

@@ -32,7 +32,7 @@
             <StackLayout
                 BackgroundColor="White"
                  Grid.Row="1"
-                Padding="5"
+                Padding="4"
                 >
                 <StackLayout
                    

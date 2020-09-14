@@ -3,6 +3,7 @@
 
 
 
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace TestingSignalR.Hubs
 		public  HubConnection hubConnection;
 		//kanw 2 function
 		//ena pou 8a kanei 
-
+		public event EventHandler<string> PageAppear;
 		public event EventHandler<string> Subscribers;
 		public event EventHandler<List<ForexSymbol>> ForexSubscribers;
 		public event EventHandler<MessageModel> Messages;
@@ -27,6 +28,7 @@ namespace TestingSignalR.Hubs
 		{
 
 			hubConnection = new HubConnectionBuilder().WithUrl("http://www.sasgamawre.online/messages").Build();
+			//hubConnection = new HubConnectionBuilder().WithUrl("http://192.168.42.234:51040/messages").Build();
 			
 			hubConnection.On<string>("ReceiveMessage", (s) =>
 			{
@@ -47,14 +49,25 @@ namespace TestingSignalR.Hubs
 
 			});
 
-
+			
 
 		}
+		public async Task CustomePageAppear()
+		{
+			hubConnection.On<string>("AppearPage", (s) => {
 
+
+
+				PageAppear?.Invoke(this, s);
+
+			});
+
+		}
 		//init for a chat room!!!
 		public async Task Init(string roomName)
 		{
-			hubConnection = new HubConnectionBuilder().WithUrl("http://192.168.1.174:45455/messages").Build();
+			hubConnection = new HubConnectionBuilder().WithUrl("http://www.sasgamawre.online/messages").Build();
+			//hubConnection = new HubConnectionBuilder().WithUrl("http://192.168.42.234:51040/messages").Build();
 			hubConnection.On<MessageModel>(roomName, (s) => {
 
 				Console.WriteLine(s);
@@ -87,6 +100,13 @@ namespace TestingSignalR.Hubs
 			{
 				Console.WriteLine(ex.Message);
 			}
+		}
+
+		public async Task Disconnect()
+		{
+			if (hubConnection?.State == HubConnectionState.Disconnected) return;
+			
+			await hubConnection?.StopAsync();
 		}
 
 

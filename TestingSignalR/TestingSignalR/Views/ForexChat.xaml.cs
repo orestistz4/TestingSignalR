@@ -23,6 +23,8 @@ namespace TestingSignalR.Views
 			hubBase = new HubBase();
 			vm.ChatHub = hubBase;
 			hubBase.ForexSubscribers += vm.ReceiveForexSymbols;
+			hubBase.PageAppear += vm.AppearPage;
+
 			BindingContext = vm;
 		}
 		protected override async void OnAppearing()
@@ -31,5 +33,7 @@ namespace TestingSignalR.Views
 
 			await vm.OnAppearing();
 		}
+
+		
 	}
 }
