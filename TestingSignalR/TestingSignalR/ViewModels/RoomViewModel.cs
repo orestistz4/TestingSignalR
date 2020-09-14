@@ -46,7 +46,7 @@ namespace TestingSignalR.ViewModels
 
 		private async Task LeaveFunction()
 		{
-
+			await Shell.Current.Navigation.PushPopupAsync(new DeleteRoomPopup(CurrentGroup));
 		}
 
 		private async Task SendFunction()
